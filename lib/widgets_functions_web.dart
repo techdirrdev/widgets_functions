@@ -31,7 +31,8 @@ class WidgetsFunctionsWeb {
       default:
         throw PlatformException(
           code: 'Unimplemented',
-          details: 'widgets_functions for web doesn\'t implement \'${call.method}\'',
+          details:
+              'widgets_functions for web doesn\'t implement \'${call.method}\'',
         );
     }
   }

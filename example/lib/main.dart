@@ -51,15 +51,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('widgets_functions')
-        ),
-        body: const Center(
-          child: Padding(
-              padding: EdgeInsets.all(20),
-              child: WFTextField(labelText: "Value", hintText: "Value"))
-        )
-      ),
+          appBar: AppBar(title: const Text('widgets_functions')),
+          body: const Center(
+              child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: WFTextField(labelText: "Value", hintText: "Value")))),
     );
   }
 }

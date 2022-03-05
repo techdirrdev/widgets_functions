@@ -23,24 +23,24 @@ class WFTextField extends StatelessWidget {
 
   const WFTextField(
       {Key? key,
-        this.controller,
-        this.labelText,
-        this.hintText,
-        this.prefixText,
-        this.suffixText,
-        this.minLines,
-        this.maxLines,
-        this.maxLength,
-        this.textAlign = TextAlign.start,
-        this.inputType,
-        this.inputFormatters,
-        this.readOnly = false,
-        this.enabled = true,
-        this.border = true,
-        this.onTap,
-        this.onChanged,
-        this.onSaved,
-        this.capitalize = false})
+      this.controller,
+      this.labelText,
+      this.hintText,
+      this.prefixText,
+      this.suffixText,
+      this.minLines,
+      this.maxLines,
+      this.maxLength,
+      this.textAlign = TextAlign.start,
+      this.inputType,
+      this.inputFormatters,
+      this.readOnly = false,
+      this.enabled = true,
+      this.border = true,
+      this.onTap,
+      this.onChanged,
+      this.onSaved,
+      this.capitalize = false})
       : super(key: key);
 
   @override
@@ -62,7 +62,7 @@ class WFTextField extends StatelessWidget {
         }
       },
       textCapitalization:
-      capitalize ? TextCapitalization.characters : TextCapitalization.none,
+          capitalize ? TextCapitalization.characters : TextCapitalization.none,
       controller: controller,
       minLines: minLines,
       maxLines: maxLines,
