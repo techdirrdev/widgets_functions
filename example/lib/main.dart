@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-
 import 'package:flutter/services.dart';
-import 'package:widgets_functions/wf_text_field.dart';
+import 'package:widgets_functions/text_field/wf_text_field.dart';
 import 'package:widgets_functions/widgets_functions.dart';
 
 void main() {
