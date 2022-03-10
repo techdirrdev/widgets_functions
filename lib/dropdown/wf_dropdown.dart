@@ -75,7 +75,8 @@ class WFDropdown extends StatefulWidget {
       this.positiveButtonText = _ok,
       this.negativeButtonTextColor = Colors.red,
       this.positiveButtonTextColor = Colors.black,
-      this.allSelection = false, this.checkBoxActiveColor = Colors.black})
+      this.allSelection = false,
+      this.checkBoxActiveColor = Colors.black})
       : super(key: key) {
     _isMultiple = true;
     selectedIds = selectedIds ?? [];
@@ -270,13 +271,17 @@ class _WFDropdownState extends State<WFDropdown> {
                                     const SizedBox(
                                       width: 10,
                                     ),
-                                    GestureDetector(onTap: () {
-                                      _isAllSelected = !_isAllSelected;
-                                      for (WFDropdownItem obj in list) {
-                                        obj.selected = _isAllSelected;
-                                      }
-                                      setState(() {});
-                                    },child: Icon(_isAllSelected ? Icons.playlist_add_check_rounded : Icons.subject))
+                                    GestureDetector(
+                                        onTap: () {
+                                          _isAllSelected = !_isAllSelected;
+                                          for (WFDropdownItem obj in list) {
+                                            obj.selected = _isAllSelected;
+                                          }
+                                          setState(() {});
+                                        },
+                                        child: Icon(_isAllSelected
+                                            ? Icons.playlist_add_check_rounded
+                                            : Icons.subject))
                                   ],
                                 ),
                               )

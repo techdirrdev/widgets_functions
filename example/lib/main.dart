@@ -117,8 +117,8 @@ class _MyAppState extends State<MyApp> {
                     labelText: "Multi",
                     hintText: "Multi Selection",
                     list: itemList,
-                    allSelection: true,
                     selectedIds: mutiSelectedIds,
+                    allSelection: true,
                     onMultipleItemListener: (selectedItemList) {
                       for (WFDropdownItem selectedItem in selectedItemList) {
                         String itemId = selectedItem.id;
