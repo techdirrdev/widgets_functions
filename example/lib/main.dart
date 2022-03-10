@@ -1,12 +1,9 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:flutter/services.dart';
 import 'package:widgets_functions/dropdown/wf_dropdown.dart';
 import 'package:widgets_functions/dropdown/wf_dropdown_item.dart';
 import 'package:widgets_functions/text_field/wf_text_field.dart';
-import 'package:widgets_functions/widgets_functions.dart';
-import 'package:widgets_functions_example/dropdown/dropdown_example.dart';
-import 'package:widgets_functions_example/textfield/textfield_example.dart';
+import 'package:widgets_functions_example/model/user.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +17,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
   List<WFDropdownItem> itemList = [];
   String singleSelectedId = "";
   List<String> mutiSelectedIds = [];
@@ -28,7 +24,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    initPlatformState();
 
     for (int i = 1; i <= 20; i++) {
       itemList.add(WFDropdownItem(
@@ -36,28 +31,6 @@ class _MyAppState extends State<MyApp> {
           value: "Item $i",
           data: User(userId: "$i", userName: "User $i")));
     }
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await WidgetsFunctions.platformVersion ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
   }
 
   @override
@@ -106,8 +79,7 @@ class _MyAppState extends State<MyApp> {
                       String itemId = selectedItem.id;
                       String itemName = selectedItem.value;
                       User user = selectedItem.data;
-                      print(
-                          "Item Id: $itemId -- Item Name: $itemName ## Other Details ## User Id: ${user.userId} -- User Name: ${user.userName}");
+                      log("Item Id: $itemId -- Item Name: $itemName ## Other Details ## User Id: ${user.userId} -- User Name: ${user.userName}");
                     }),
                 const SizedBox(
                   height: 20,
@@ -124,8 +96,7 @@ class _MyAppState extends State<MyApp> {
                         String itemId = selectedItem.id;
                         String itemName = selectedItem.value;
                         User user = selectedItem.data;
-                        print(
-                            "Item Id: $itemId -- Item Name: $itemName ## Other Details ## User Id: ${user.userId} -- User Name: ${user.userName}");
+                        log("Item Id: $itemId -- Item Name: $itemName ## Other Details ## User Id: ${user.userId} -- User Name: ${user.userName}");
                       }
                     })
               ],
@@ -133,11 +104,4 @@ class _MyAppState extends State<MyApp> {
           ))),
     );
   }
-}
-
-class User {
-  String userId;
-  String userName;
-
-  User({this.userId = "0", this.userName = ""});
 }

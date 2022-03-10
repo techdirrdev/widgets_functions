@@ -12,10 +12,15 @@ class _TextFieldExampleState extends State<TextFieldExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("TextField Example"),),
-      body: SafeArea(child: Column(children: const [
-        WFTextField(labelText: "Value", hintText: "Value"),
-      ],)),
+      appBar: AppBar(
+        title: const Text("TextField Example"),
+      ),
+      body: SafeArea(
+          child: Column(
+        children: const [
+          WFTextField(labelText: "Value", hintText: "Value"),
+        ],
+      )),
     );
   }
 }

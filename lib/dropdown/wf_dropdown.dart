@@ -8,31 +8,78 @@ const String _comma = ",";
 const String _searchHere = "Search here...";
 const IconData _icSearch = Icons.search;
 
+// Dropdown for single selection or multi selection
 class WFDropdown extends StatefulWidget {
+  // dropdown item list
   List<WFDropdownItem> list = [];
+
+  // selected item id for single dropdown
   String? selectedId;
+
+  // selected item id list for multiple dropdown
   List<String>? selectedIds;
+
+  // dropdown dialog title
   String title = "";
+
+  // dropdown label text
   String labelText = "";
+
+  // dropdown hint text
   String hintText = "";
+
+  // dropdown enable or not
   bool enabled = true;
+
+  // dropdown border
   InputBorder border = const OutlineInputBorder();
-  bool searchBox = true;
+
+  // dropdown selected item prefix separator for multiple dropdown
   String prefixSeparator = _has;
+
+  // dropdown selected item suffix separator for multiple dropdown
   String suffixSeparator = _comma;
+
+  // dropdown selected item background color
   Color selectedBackgroundColor = Colors.black12;
+
+  // dropdown dialog item search box visible or not
+  bool searchBox = true;
+
+  // dropdown dialog item search box hint text
   String searchBoxHintText = _searchHere;
+
+  // dropdown dialog item search box prefix icon
   IconData prefixSearchBoxIcon = _icSearch;
+
+  // dropdown dialog negative button text
   String negativeButtonText = _cancel;
+
+  // dropdown dialog positive button text for multiple dropdown
   String positiveButtonText = _ok;
+
+  // dropdown dialog negative button text color
   Color negativeButtonTextColor = Colors.red;
+
+  // dropdown dialog positive button text color for multiple dropdown
   Color positiveButtonTextColor = Colors.black;
+
+  // dropdown dialog all selection button visible or not for multiple dropdown
   bool allSelection = false;
+
+  // dropdown item check box active color for multiple dropdown
   Color checkBoxActiveColor = Colors.black;
+
+  // dropdown single selection listener function
   Function(WFDropdownItem selectedItem)? onSingleItemListener;
+
+  // dropdown multi selection listener function
   Function(List<WFDropdownItem> selectedItemList)? onMultipleItemListener;
+
+  // dropdown single or multiple
   bool _isMultiple = false;
 
+  // constructor for single selection dropdown
   WFDropdown.single(
       {Key? key,
       required this.list,
@@ -55,6 +102,7 @@ class WFDropdown extends StatefulWidget {
     selectedIds = selectedIds ?? [];
   }
 
+  // constructor for single multi dropdown
   WFDropdown.multiple(
       {Key? key,
       required this.list,
@@ -97,11 +145,13 @@ class _WFDropdownState extends State<WFDropdown> {
     _initialSetup();
   }
 
+  // initial setup of dropdown item selection
   _initialSetup() {
     String selectedValue = _getSelectedValue(list: widget.list);
     _conSelectedValue.text = selectedValue;
   }
 
+  // get selected value from dropdown item list
   String _getSelectedValue({required List<WFDropdownItem> list}) {
     String id = "";
     String value = widget.hintText;
@@ -154,7 +204,8 @@ class _WFDropdownState extends State<WFDropdown> {
     );
   }
 
-  _setAllSelection(List<WFDropdownItem> list) {
+  // check selected dropdown item
+  _checkAllSelection(List<WFDropdownItem> list) {
     if (widget.allSelection) {
       int selectedItemCount = 0;
       for (WFDropdownItem obj in list) {
@@ -171,6 +222,7 @@ class _WFDropdownState extends State<WFDropdown> {
     }
   }
 
+  // open dropdown dialog
   _openDropdown(
       {required BuildContext context,
       required List<WFDropdownItem> list,
@@ -198,7 +250,7 @@ class _WFDropdownState extends State<WFDropdown> {
 
     List<WFDropdownItem> _fList = WFDropdownItem.cloneList(list);
     _conSearchBox.clear();
-    _setAllSelection(list);
+    _checkAllSelection(list);
 
     showDialog(
         context: context,
@@ -366,6 +418,7 @@ class _WFDropdownState extends State<WFDropdown> {
         });
   }
 
+  // dropdown item view
   _dropdownItemView(BuildContext context, bool isMultiple, WFDropdownItem obj,
       List<WFDropdownItem> list, StateSetter setState) {
     return InkWell(
@@ -374,7 +427,7 @@ class _WFDropdownState extends State<WFDropdown> {
             setState(() {
               obj.selected = !obj.selected;
             });
-            _setAllSelection(list);
+            _checkAllSelection(list);
           } else {
             widget.selectedId = obj.id;
             _conSelectedValue.text = obj.value;
