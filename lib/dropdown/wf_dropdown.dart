@@ -95,8 +95,7 @@ class WFDropdown extends StatefulWidget {
       this.prefixSearchBoxIcon = _icSearch,
       this.selectedBackgroundColor = Colors.black12,
       this.negativeButtonText = _cancel,
-      this.negativeButtonTextColor = Colors.red})
-      : super(key: key) {
+      this.negativeButtonTextColor = Colors.red}) {
     _isMultiple = false;
     selectedId = selectedId ?? "";
     selectedIds = selectedIds ?? [];
@@ -124,9 +123,9 @@ class WFDropdown extends StatefulWidget {
       this.negativeButtonTextColor = Colors.red,
       this.positiveButtonTextColor = Colors.black,
       this.allSelection = false,
-      this.checkBoxActiveColor = Colors.black})
-      : super(key: key) {
+      this.checkBoxActiveColor = Colors.black}) {
     _isMultiple = true;
+    selectedId = selectedId ?? "";
     selectedIds = selectedIds ?? [];
   }
 
@@ -147,6 +146,7 @@ class _WFDropdownState extends State<WFDropdown> {
 
   // initial setup of dropdown item selection
   _initialSetup() {
+    print(widget.list.length);
     String selectedValue = _getSelectedValue(list: widget.list);
     _conSelectedValue.text = selectedValue;
   }

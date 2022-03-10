@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:widgets_functions/dropdown/wf_dropdown.dart';
@@ -17,20 +18,33 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<WFDropdownItem> itemList = [];
-  String singleSelectedId = "";
-  List<String> mutiSelectedIds = [];
+  List<WFDropdownItem> _itemList = [];
+  String _singleSelectedId = "1";
+  List<String> _mutiSelectedIds = [];
 
   @override
   void initState() {
     super.initState();
+    _generateItems();
+  }
 
-    for (int i = 1; i <= 20; i++) {
-      itemList.add(WFDropdownItem(
+  _generateItems() {
+    List<WFDropdownItem> list = [];
+    Timer(Duration(milliseconds: 0), () async {
+      for (int i = 1; i <= 20; i++) {
+        list.add(WFDropdownItem(
+            id: "$i",
+            value: "Item $i",
+            data: User(userId: "$i", userName: "User $i")));
+      }
+    },);
+    /*for (int i = 1; i <= 20; i++) {
+      list.add(WFDropdownItem(
           id: "$i",
           value: "Item $i",
           data: User(userId: "$i", userName: "User $i")));
-    }
+    }*/
+    _itemList = list;
   }
 
   @override
@@ -73,8 +87,8 @@ class _MyAppState extends State<MyApp> {
                     title: "Single Selection Dropdown",
                     labelText: "Single",
                     hintText: "Single Selection",
-                    list: itemList,
-                    selectedId: singleSelectedId,
+                    list: _itemList,
+                    selectedId: _singleSelectedId,
                     onSingleItemListener: (selectedItem) {
                       String itemId = selectedItem.id;
                       String itemName = selectedItem.value;
@@ -88,8 +102,8 @@ class _MyAppState extends State<MyApp> {
                     title: "Multi Selection Dropdown",
                     labelText: "Multi",
                     hintText: "Multi Selection",
-                    list: itemList,
-                    selectedIds: mutiSelectedIds,
+                    list: _itemList,
+                    selectedIds: _mutiSelectedIds,
                     allSelection: true,
                     onMultipleItemListener: (selectedItemList) {
                       for (WFDropdownItem selectedItem in selectedItemList) {
