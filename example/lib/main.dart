@@ -18,7 +18,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   List<WFDropdownItem> _itemList = [];
-  String _singleSelectedId = "1";
+  String _singleSelectedId = "";
   final List<String> _mutiSelectedIds = [];
 
   @override

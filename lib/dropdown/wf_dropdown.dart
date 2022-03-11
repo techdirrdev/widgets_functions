@@ -99,50 +99,13 @@ class _WFDropdownState extends State<WFDropdown> {
   final TextEditingController _conSearchBox = TextEditingController();
   bool _isAllSelected = false;
 
-  // initial setup of dropdown item selection
-  _initialSetup() {
-    String selectedValue = _getSelectedValue(list: widget.list);
-    _conSelectedValue.text = selectedValue;
-  }
-
-  // get selected value from dropdown item list
-  String _getSelectedValue({required List<WFDropdownItem> list}) {
-    String id = "";
-    String value = widget.hintText;
-    if (widget._isMultiple) {
-      for (String selectedId in (widget.selectedIds ?? [])) {
-        for (WFDropdownItem obj in widget.list) {
-          if (obj.id.toLowerCase() == (selectedId).toLowerCase()) {
-            if (id.isEmpty) {
-              id = "${obj.id}$_comma";
-              value = "${widget.prefixSeparator}${obj.value}";
-            } else {
-              id = "$id, ${obj.id}";
-              value =
-                  "$value${widget.suffixSeparator} ${widget.prefixSeparator}${obj.value}";
-            }
-          }
-        }
-      }
-    } else {
-      for (WFDropdownItem obj in widget.list) {
-        if (obj.id.toLowerCase() == (widget.selectedId ?? "").toLowerCase()) {
-          value = obj.value;
-          break;
-        }
-      }
-    }
-    return value;
-  }
-
-  @override
-  void initState() {
-    _initialSetup();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    return _dropdownView();
+  }
+
+  _dropdownView() {
+    _initialSetup();
     return TextFormField(
       onTap: () {
         _openDropdown(
@@ -162,6 +125,44 @@ class _WFDropdownState extends State<WFDropdown> {
           labelText: widget.labelText,
           hintText: widget.hintText),
     );
+  }
+
+  // initial setup of dropdown item selection
+  _initialSetup() {
+    String selectedValue = _getSelectedValue(list: widget.list);
+    _conSelectedValue.text = selectedValue;
+  }
+
+  // get selected value from dropdown item list
+  String _getSelectedValue({required List<WFDropdownItem> list}) {
+    List<String> ids = [];
+    String value = widget.hintText;
+    if (widget._isMultiple) {
+      for (String selectedId in (widget.selectedIds ?? [])) {
+        for (WFDropdownItem obj in widget.list) {
+          if (obj.id.toLowerCase() == (selectedId).toLowerCase()) {
+            if (ids.isEmpty) {
+              ids.add(obj.id);
+              value = "${widget.prefixSeparator}${obj.value}";
+            } else {
+              if (!ids.contains(obj.id)) {
+                ids.add(obj.id);
+                value =
+                    "$value${widget.suffixSeparator} ${widget.prefixSeparator}${obj.value}";
+              }
+            }
+          }
+        }
+      }
+    } else {
+      for (WFDropdownItem obj in widget.list) {
+        if (obj.id.toLowerCase() == (widget.selectedId ?? "").toLowerCase()) {
+          value = obj.value;
+          break;
+        }
+      }
+    }
+    return value;
   }
 
   // check selected dropdown item
