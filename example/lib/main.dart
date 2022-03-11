@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:widgets_functions/dropdown/wf_dropdown.dart';
@@ -20,7 +19,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   List<WFDropdownItem> _itemList = [];
   String _singleSelectedId = "1";
-  List<String> _mutiSelectedIds = [];
+  final List<String> _mutiSelectedIds = [];
 
   @override
   void initState() {
@@ -30,21 +29,15 @@ class _MyAppState extends State<MyApp> {
 
   _generateItems() {
     List<WFDropdownItem> list = [];
-    Timer(Duration(milliseconds: 0), () async {
-      for (int i = 1; i <= 20; i++) {
-        list.add(WFDropdownItem(
-            id: "$i",
-            value: "Item $i",
-            data: User(userId: "$i", userName: "User $i")));
-      }
-    },);
-    /*for (int i = 1; i <= 20; i++) {
+    for (int i = 1; i <= 20; i++) {
       list.add(WFDropdownItem(
           id: "$i",
           value: "Item $i",
           data: User(userId: "$i", userName: "User $i")));
-    }*/
-    _itemList = list;
+    }
+    setState(() {
+      _itemList = list;
+    });
   }
 
   @override
@@ -83,13 +76,16 @@ class _MyAppState extends State<MyApp> {
                 const SizedBox(
                   height: 20,
                 ),
-                WFDropdown.single(
+                WFDropdown.singleSelection(
                     title: "Single Selection Dropdown",
                     labelText: "Single",
                     hintText: "Single Selection",
                     list: _itemList,
                     selectedId: _singleSelectedId,
                     onSingleItemListener: (selectedItem) {
+                      setState(() {
+                        _singleSelectedId = selectedItem.id;
+                      });
                       String itemId = selectedItem.id;
                       String itemName = selectedItem.value;
                       User user = selectedItem.data;
@@ -98,7 +94,7 @@ class _MyAppState extends State<MyApp> {
                 const SizedBox(
                   height: 20,
                 ),
-                WFDropdown.multiple(
+                WFDropdown.multiSelection(
                     title: "Multi Selection Dropdown",
                     labelText: "Multi",
                     hintText: "Multi Selection",

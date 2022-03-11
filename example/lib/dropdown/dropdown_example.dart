@@ -37,7 +37,7 @@ class _DropdownExampleState extends State<DropdownExample> {
       body: SafeArea(
           child: Column(
         children: [
-          WFDropdown.single(
+          WFDropdown.singleSelection(
               title: "Single Selection Dropdown",
               labelText: "Single",
               hintText: "Single Selection",
@@ -52,7 +52,7 @@ class _DropdownExampleState extends State<DropdownExample> {
           const SizedBox(
             height: 20,
           ),
-          WFDropdown.multiple(
+          WFDropdown.multiSelection(
               title: "Multi Selection Dropdown",
               labelText: "Multi",
               hintText: "Multi Selection",

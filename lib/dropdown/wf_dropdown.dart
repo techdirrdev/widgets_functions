@@ -10,77 +10,32 @@ const IconData _icSearch = Icons.search;
 
 // Dropdown for single selection or multi selection
 class WFDropdown extends StatefulWidget {
-  // dropdown item list
-  List<WFDropdownItem> list = [];
-
-  // selected item id for single dropdown
-  String? selectedId;
-
-  // selected item id list for multiple dropdown
-  List<String>? selectedIds;
-
-  // dropdown dialog title
-  String title = "";
-
-  // dropdown label text
-  String labelText = "";
-
-  // dropdown hint text
-  String hintText = "";
-
-  // dropdown enable or not
-  bool enabled = true;
-
-  // dropdown border
-  InputBorder border = const OutlineInputBorder();
-
-  // dropdown selected item prefix separator for multiple dropdown
-  String prefixSeparator = _has;
-
-  // dropdown selected item suffix separator for multiple dropdown
-  String suffixSeparator = _comma;
-
-  // dropdown selected item background color
-  Color selectedBackgroundColor = Colors.black12;
-
-  // dropdown dialog item search box visible or not
-  bool searchBox = true;
-
-  // dropdown dialog item search box hint text
-  String searchBoxHintText = _searchHere;
-
-  // dropdown dialog item search box prefix icon
-  IconData prefixSearchBoxIcon = _icSearch;
-
-  // dropdown dialog negative button text
-  String negativeButtonText = _cancel;
-
-  // dropdown dialog positive button text for multiple dropdown
-  String positiveButtonText = _ok;
-
-  // dropdown dialog negative button text color
-  Color negativeButtonTextColor = Colors.red;
-
-  // dropdown dialog positive button text color for multiple dropdown
-  Color positiveButtonTextColor = Colors.black;
-
-  // dropdown dialog all selection button visible or not for multiple dropdown
-  bool allSelection = false;
-
-  // dropdown item check box active color for multiple dropdown
-  Color checkBoxActiveColor = Colors.black;
-
-  // dropdown single selection listener function
-  Function(WFDropdownItem selectedItem)? onSingleItemListener;
-
-  // dropdown multi selection listener function
-  Function(List<WFDropdownItem> selectedItemList)? onMultipleItemListener;
-
-  // dropdown single or multiple
-  bool _isMultiple = false;
+  final List<WFDropdownItem> list;
+  final String? selectedId;
+  final List<String>? selectedIds;
+  final String title;
+  final String labelText;
+  final String hintText;
+  final bool enabled;
+  final InputBorder border;
+  final String prefixSeparator;
+  final String suffixSeparator;
+  final Color selectedBackgroundColor;
+  final bool searchBox;
+  final String searchBoxHintText;
+  final IconData prefixSearchBoxIcon;
+  final String negativeButtonText;
+  final String positiveButtonText;
+  final Color negativeButtonTextColor;
+  final Color positiveButtonTextColor;
+  final bool allSelection;
+  final Color checkBoxActiveColor;
+  final Function(WFDropdownItem selectedItem)? onSingleItemListener;
+  final Function(List<WFDropdownItem> selectedItemList)? onMultipleItemListener;
+  final bool _isMultiple;
 
   // constructor for single selection dropdown
-  WFDropdown.single(
+  const WFDropdown.singleSelection(
       {Key? key,
       required this.list,
       required this.onSingleItemListener,
@@ -95,14 +50,20 @@ class WFDropdown extends StatefulWidget {
       this.prefixSearchBoxIcon = _icSearch,
       this.selectedBackgroundColor = Colors.black12,
       this.negativeButtonText = _cancel,
-      this.negativeButtonTextColor = Colors.red}) {
-    _isMultiple = false;
-    selectedId = selectedId ?? "";
-    selectedIds = selectedIds ?? [];
-  }
+      this.negativeButtonTextColor = Colors.red})
+      : selectedIds = null,
+        prefixSeparator = _has,
+        suffixSeparator = _comma,
+        positiveButtonText = _ok,
+        positiveButtonTextColor = Colors.black,
+        allSelection = false,
+        checkBoxActiveColor = Colors.black,
+        onMultipleItemListener = null,
+        _isMultiple = false,
+        super(key: key);
 
-  // constructor for single multi dropdown
-  WFDropdown.multiple(
+// constructor for single multi dropdown
+  const WFDropdown.multiSelection(
       {Key? key,
       required this.list,
       required this.onMultipleItemListener,
@@ -123,11 +84,11 @@ class WFDropdown extends StatefulWidget {
       this.negativeButtonTextColor = Colors.red,
       this.positiveButtonTextColor = Colors.black,
       this.allSelection = false,
-      this.checkBoxActiveColor = Colors.black}) {
-    _isMultiple = true;
-    selectedId = selectedId ?? "";
-    selectedIds = selectedIds ?? [];
-  }
+      this.checkBoxActiveColor = Colors.black})
+      : selectedId = null,
+        onSingleItemListener = null,
+        _isMultiple = true,
+        super(key: key);
 
   @override
   State<WFDropdown> createState() => _WFDropdownState();
@@ -138,15 +99,8 @@ class _WFDropdownState extends State<WFDropdown> {
   final TextEditingController _conSearchBox = TextEditingController();
   bool _isAllSelected = false;
 
-  @override
-  void initState() {
-    super.initState();
-    _initialSetup();
-  }
-
   // initial setup of dropdown item selection
   _initialSetup() {
-    print(widget.list.length);
     String selectedValue = _getSelectedValue(list: widget.list);
     _conSelectedValue.text = selectedValue;
   }
@@ -156,7 +110,7 @@ class _WFDropdownState extends State<WFDropdown> {
     String id = "";
     String value = widget.hintText;
     if (widget._isMultiple) {
-      for (String selectedId in widget.selectedIds!) {
+      for (String selectedId in (widget.selectedIds ?? [])) {
         for (WFDropdownItem obj in widget.list) {
           if (obj.id.toLowerCase() == (selectedId).toLowerCase()) {
             if (id.isEmpty) {
@@ -172,13 +126,19 @@ class _WFDropdownState extends State<WFDropdown> {
       }
     } else {
       for (WFDropdownItem obj in widget.list) {
-        if (obj.id.toLowerCase() == (widget.selectedId!).toLowerCase()) {
+        if (obj.id.toLowerCase() == (widget.selectedId ?? "").toLowerCase()) {
           value = obj.value;
           break;
         }
       }
     }
     return value;
+  }
+
+  @override
+  void initState() {
+    _initialSetup();
+    super.initState();
   }
 
   @override
@@ -429,7 +389,7 @@ class _WFDropdownState extends State<WFDropdown> {
             });
             _checkAllSelection(list);
           } else {
-            widget.selectedId = obj.id;
+            //widget.selectedId = obj.id;
             _conSelectedValue.text = obj.value;
             if (widget.onSingleItemListener != null) {
               widget.onSingleItemListener!(obj);
