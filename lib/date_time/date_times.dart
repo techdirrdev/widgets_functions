@@ -5,13 +5,13 @@ import 'package:widgets_functions/utils.dart';
 class DateTimes {
   DateTimes._();
 
-  static const String yyyyMMdd = "yyyy-MM-dd";
-  static const String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
-  static const String yyyy = "yyyy";
-  static const String E = "E";
-  static const String EE = "EE";
+  static const String fyyyyMMdd = "yyyy-MM-dd";
+  static const String fyyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
+  static const String fyyyy = "yyyy";
+  static const String fE = "E";
+  static const String fEE = "EE";
 
-  static String getCurrentDateTime({String format = DateTimes.yyyyMMdd}) {
+  static String getCurrentDateTime({String format = DateTimes.fyyyyMMdd}) {
     return DateFormat(format).format(DateTime.now());
   }
 
@@ -21,7 +21,7 @@ class DateTimes {
       String? date,
       String? minDate,
       String? maxDate,
-      String format = DateTimes.yyyyMMdd}) {
+      String format = DateTimes.fyyyyMMdd}) {
     showDatePicker(
       context: context,
       initialDate: Utils.isNullOrEmpty(date)
@@ -41,7 +41,7 @@ class DateTimes {
   }
 
   static DateTime stringToDateTime(
-      {required String date, String format = DateTimes.yyyyMMdd}) {
+      {required String date, String format = DateTimes.fyyyyMMdd}) {
     if (Utils.isNullOrEmpty(date)) {
       return DateTime.now();
     } else {
@@ -50,7 +50,7 @@ class DateTimes {
   }
 
   static String dateTimeToString(
-      {required DateTime date, String format = DateTimes.yyyyMMdd}) {
+      {required DateTime date, String format = DateTimes.fyyyyMMdd}) {
     return DateFormat(format).format(date);
   }
 
@@ -74,9 +74,9 @@ class DateTimes {
   }
 
   static String reverseDate(
-      {required String date, String dateFormat = DateTimes.yyyyMMdd}) {
+      {required String date, String dateFormat = DateTimes.fyyyyMMdd}) {
     String reverseDate = "";
-    if (Utils.equals(dateFormat, DateTimes.yyyyMMdd, ignoreCase: false) &&
+    if (Utils.equals(dateFormat, DateTimes.fyyyyMMdd, ignoreCase: false) &&
         !Utils.isNullOrEmpty(date)) {
       var dateArray = date.split("-").toList();
       if (dateArray.length == 3) {
