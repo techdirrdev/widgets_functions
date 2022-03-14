@@ -3,8 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:widgets_functions/utils.dart';
 
 class DateTimes {
-  DateTimes._();
-
   static const String fyyyyMMdd = "yyyy-MM-dd";
   static const String fyyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
   static const String fyyyy = "yyyy";
@@ -15,7 +13,7 @@ class DateTimes {
     return DateFormat(format).format(DateTime.now());
   }
 
-  static dateSelection(
+  static datePicker(
       {required BuildContext context,
       required Function(String date) dateTime,
       String? date,

@@ -16,10 +16,15 @@ class _TextFieldExampleState extends State<TextFieldExample> {
         title: const Text("TextField Example"),
       ),
       body: SafeArea(
+          child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
           child: Column(
-        children: const [
-          WFTextField(labelText: "Value", hintText: "Value"),
-        ],
+            children: const [
+              WFTextField(labelText: "Value", hintText: "Value"),
+            ],
+          ),
+        ),
       )),
     );
   }
