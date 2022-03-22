@@ -17,6 +17,7 @@ class WFDropdown extends StatefulWidget {
   final String labelText;
   final String hintText;
   final bool enabled;
+  final TextAlign textAlign;
   final InputBorder border;
   final String prefixSeparator;
   final String suffixSeparator;
@@ -44,6 +45,7 @@ class WFDropdown extends StatefulWidget {
       this.labelText = "",
       this.hintText = "",
       this.enabled = true,
+      this.textAlign = TextAlign.start,
       this.border = const OutlineInputBorder(),
       this.searchBox = true,
       this.searchBoxHintText = _searchHere,
@@ -72,6 +74,7 @@ class WFDropdown extends StatefulWidget {
       this.labelText = "",
       this.hintText = "",
       this.enabled = true,
+      this.textAlign = TextAlign.start,
       this.border = const OutlineInputBorder(),
       this.searchBox = true,
       this.prefixSeparator = _has,
@@ -118,6 +121,7 @@ class _WFDropdownState extends State<WFDropdown> {
       },
       controller: _conSelectedValue,
       readOnly: true,
+      textAlign: widget.textAlign,
       enabled: widget.enabled,
       decoration: InputDecoration(
           suffixIcon: const Icon(Icons.arrow_drop_down_rounded),
