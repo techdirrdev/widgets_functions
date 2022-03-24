@@ -1,6 +1,6 @@
-// dropdown item model class
 import 'package:widgets_functions/utils.dart';
 
+// dropdown item model class
 class WFDropdownItem {
   String id;
   String value;

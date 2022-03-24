@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:widgets_functions_example/date_picker/date_picker_example.dart';
-import 'package:widgets_functions_example/dropdown/dropdown_example.dart';
-import 'package:widgets_functions_example/textfield/textfield_example.dart';
+import 'package:widgets_functions/navigator/navigate.dart';
+import 'package:widgets_functions_example/utils/routes/routes.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -24,11 +23,7 @@ class _DashboardState extends State<Dashboard> {
               children: [
                 ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const TextFieldExample(),
-                          ));
+                      NavigateWithName.to(context, Routes.textFieldExample);
                     },
                     child: const Text("TextField")),
                 const SizedBox(
@@ -36,11 +31,7 @@ class _DashboardState extends State<Dashboard> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const DatePickerExample(),
-                          ));
+                      NavigateWithName.to(context, Routes.datePickerExample);
                     },
                     child: const Text("Date Picker")),
                 const SizedBox(
@@ -48,11 +39,7 @@ class _DashboardState extends State<Dashboard> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const DropdownExample(),
-                          ));
+                      NavigateWithName.to(context, Routes.dropdownExample);
                     },
                     child: const Text("Dropdown")),
               ],

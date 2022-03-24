@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widgets_functions_example/dashboard.dart';
+import 'package:widgets_functions_example/utils/routes/routes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,7 +12,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: Dashboard());
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: Routes.routes(context),
+        home: const Dashboard());
   }
 }
