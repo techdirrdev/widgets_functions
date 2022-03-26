@@ -1,3 +1,3 @@
 ## 1.2.1
 
-* Responsive Layout Wigdet
+* ResponsiveWigdet - Responsive design for mobile, tablet and desktop mode.
