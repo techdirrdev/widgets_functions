@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widgets_functions/responsive/responsive_widget.dart';
 import 'package:widgets_functions/text_field/wf_text_field.dart';
 
 class TextFieldExample extends StatefulWidget {
@@ -11,6 +12,13 @@ class TextFieldExample extends StatefulWidget {
 class _TextFieldExampleState extends State<TextFieldExample> {
   @override
   Widget build(BuildContext context) {
+    return ResponsiveWidget(
+        mobileBody: _mbTextFieldExample(context),
+        tabletBody: _mbTextFieldExample(context),
+        desktopBody: _mbTextFieldExample(context));
+  }
+
+  _mbTextFieldExample(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("TextField Example"),

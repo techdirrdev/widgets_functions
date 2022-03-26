@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widgets_functions/navigator/navigate.dart';
+import 'package:widgets_functions/responsive/responsive_widget.dart';
 import 'package:widgets_functions_example/utils/routes/routes.dart';
 
 class Dashboard extends StatefulWidget {
@@ -12,6 +13,13 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
+    return ResponsiveWidget(
+        mobileBody: _mbDashboard(context),
+        tabletBody: _mbDashboard(context),
+        desktopBody: _mbDashboard(context));
+  }
+
+  _mbDashboard(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text('widgets_functions')),
         body: SafeArea(

@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:widgets_functions/dropdown/wf_dropdown.dart';
 import 'package:widgets_functions/dropdown/wf_dropdown_item.dart';
+import 'package:widgets_functions/responsive/responsive_widget.dart';
 import 'package:widgets_functions_example/model/user.dart';
 
 class DropdownExample extends StatefulWidget {
@@ -37,6 +38,13 @@ class _DropdownExampleState extends State<DropdownExample> {
 
   @override
   Widget build(BuildContext context) {
+    return ResponsiveWidget(
+        mobileBody: _mbDropdownExample(context),
+        tabletBody: _mbDropdownExample(context),
+        desktopBody: _mbDropdownExample(context));
+  }
+
+  _mbDropdownExample(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Dropdown Example"),

@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:widgets_functions/date_time/date_times.dart';
+import 'package:widgets_functions/responsive/responsive_widget.dart';
 import 'package:widgets_functions/text_field/wf_text_field.dart';
 
 class DatePickerExample extends StatefulWidget {
@@ -16,6 +17,13 @@ class _DatePickerExampleState extends State<DatePickerExample> {
 
   @override
   Widget build(BuildContext context) {
+    return ResponsiveWidget(
+        mobileBody: _mbDatePickerExample(context),
+        tabletBody: _mbDatePickerExample(context),
+        desktopBody: _mbDatePickerExample(context));
+  }
+
+  _mbDatePickerExample(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Date Picker Example"),
@@ -27,7 +35,8 @@ class _DatePickerExampleState extends State<DatePickerExample> {
           child: Column(
             children: [
               WFTextField(
-                controller: _conDate..text = _selectedDate,
+                controller: _conDate
+                  ..text = DateTimes.reverseDate(date: _selectedDate),
                 labelText: "Date",
                 hintText: "Select Date",
                 readOnly: true,
@@ -37,8 +46,9 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                       date: _selectedDate,
                       dateTime: (date) {
                         log(date);
-                        _selectedDate = date;
-                        _conDate.text = _selectedDate;
+                        setState(() {
+                          _selectedDate = date;
+                        });
                       });
                 },
               )
