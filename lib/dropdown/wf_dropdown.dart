@@ -178,12 +178,13 @@ class _WFDropdownState extends State<WFDropdown> {
           selectedItemCount++;
         }
       }
-      if (selectedItemCount == list.length) {
-        _isAllSelected = true;
-      } else {
-        _isAllSelected = false;
-      }
-      setState(() {});
+      setState(() {
+        if (selectedItemCount == list.length) {
+          _isAllSelected = true;
+        } else {
+          _isAllSelected = false;
+        }
+      });
     }
   }
 
@@ -423,6 +424,7 @@ class _WFDropdownState extends State<WFDropdown> {
                           setState(() {
                             obj.selected = !obj.selected;
                           });
+                          _checkAllSelection(list);
                         }),
                     const SizedBox(width: 5),
                   ],

@@ -1,3 +1,3 @@
 ## 1.2.2
 
-* ResponsiveWigdet - Responsive design for mobile, tablet and desktop mode.
+* KeyboardDismiss - Keyboard dismiss when click outside keyboard

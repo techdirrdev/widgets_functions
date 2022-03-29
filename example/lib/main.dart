@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widgets_functions/keyboard/keyboard_dismiss.dart';
 import 'package:widgets_functions_example/dashboard.dart';
 import 'package:widgets_functions_example/utils/routes/routes.dart';
 
@@ -12,9 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        routes: Routes.routes(context),
-        home: const Dashboard());
+    return KeyboardDismiss(
+      onTapDismiss: true,
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          routes: Routes.routes(context),
+          home: const Dashboard()),
+    );
   }
 }
