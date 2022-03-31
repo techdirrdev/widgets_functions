@@ -13,7 +13,9 @@ class DatePickerExample extends StatefulWidget {
 
 class _DatePickerExampleState extends State<DatePickerExample> {
   String _selectedDate = DateTimes.getCurrentDateTime();
+  String _selectedTime = DateTimes.getCurrentTime();
   final TextEditingController _conDate = TextEditingController();
+  final TextEditingController _conTime = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +52,22 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                           _selectedDate = date;
                         });
                       });
+                },
+              ),
+              const SizedBox(height: 10,),
+              WFTextField(
+                controller: _conTime
+                  ..text = DateTimes.periodTime(time: _selectedTime),
+                labelText: "Time",
+                hintText: "Select Time",
+                readOnly: true,
+                onTap: () {
+                  DateTimes.timePicker(context: context, time: _selectedTime, dateTime: (time) {
+                    log(time);
+                    setState(() {
+                      _selectedTime = time;
+                    });
+                  });
                 },
               )
             ],
