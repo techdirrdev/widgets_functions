@@ -1,3 +1,3 @@
-## 1.2.3
+## 1.2.4
 
 * Time Picker - Time picker function
