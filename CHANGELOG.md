@@ -1,3 +1,3 @@
 ## 1.2.3
 
-* KeyboardDismiss - Keyboard dismiss when click outside keyboard
+* Time Picker - Time picker function

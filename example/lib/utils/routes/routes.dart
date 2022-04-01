@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widgets_functions_example/dashboard.dart';
-import 'package:widgets_functions_example/date_picker/date_picker_example.dart';
+import 'package:widgets_functions_example/date_time_picker/date_time_picker_example.dart';
 import 'package:widgets_functions_example/dropdown/dropdown_example.dart';
 import 'package:widgets_functions_example/textfield/textfield_example.dart';
 
@@ -16,7 +16,7 @@ class Routes {
     return {
       dashboard: (context) => const Dashboard(),
       textFieldExample: (context) => const TextFieldExample(),
-      datePickerExample: (context) => const DatePickerExample(),
+      datePickerExample: (context) => const DateTimePickerExample(),
       dropdownExample: (context) => const DropdownExample(),
     };
   }

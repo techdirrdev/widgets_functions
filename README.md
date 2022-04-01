@@ -8,3 +8,6 @@ For help getting started with Flutter, view our
 [online documentation](https://pub.dev/documentation/widgets_functions/latest), which offers tutorials,
 samples, guidance on mobile and web development, and a full API reference.
 
+## Example
+
+Please follow this [example](https://github.com/techdirr/widgets_functions/tree/master/example) here.

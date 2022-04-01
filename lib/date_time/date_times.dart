@@ -8,17 +8,16 @@ class DateTimes {
   static const String fyyyyMMdd = "yyyy-MM-dd";
   static const String fyyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
   static const String fyyyy = "yyyy";
-  static const String fE = "E";
-  static const String fEE = "EE";
+  static const String fHHmmss = "HH:mm:ss";
   static const String fhhmmpp = "hh:mm am";
-  static const String fhhmm = "hh:mm";
+  static const String fHHmm = "HH:mm";
 
   static String getCurrentDateTime({String format = DateTimes.fyyyyMMdd}) {
     return DateFormat(format).format(DateTime.now());
   }
 
-  static String getCurrentTime({String format = DateTimes.fhhmm}) {
-    return DateTimes.timeToString(time: TimeOfDay.now());
+  static String getCurrentTime({String format = DateTimes.fHHmmss}) {
+    return DateTimes.timeToString(time: TimeOfDay.now(), format: format);
   }
 
   static datePicker(
@@ -106,9 +105,6 @@ class DateTimes {
     showTimePicker(
             context: context, initialTime: DateTimes.stringToTime(time: time))
         .then((value) {
-      print(value!.hour);
-      print(value.minute);
-      print(value.period.name);
       dateTime((value != null)
           ? DateTimes.timeToString(time: value)
           : (Utils.isNullOrEmpty(time) ? "" : time.toString()));
@@ -138,25 +134,45 @@ class DateTimes {
   }
 
   static String timeToString(
-      {required TimeOfDay time, String format = DateTimes.fhhmm}) {
-    print("len: ${(time.hour.toString().length)}");
-    if (Utils.equals(format, DateTimes.fhhmm)) {
-      return "${(time.hour)}:${time.minute}";
+      {required TimeOfDay time, String format = DateTimes.fHHmmss}) {
+    int hour = time.hour;
+    String hourWithLeadingZero = DateTimes._timeWithLeadingZero(hour);
+    String minuteWithLeadingZero = DateTimes._timeWithLeadingZero(time.minute);
+
+    if (Utils.equals(format, DateTimes.fHHmmss)) {
+      return "$hourWithLeadingZero:$minuteWithLeadingZero:00";
+    } else if (Utils.equals(format, DateTimes.fHHmm)) {
+      return "$hourWithLeadingZero:$minuteWithLeadingZero";
     } else if (Utils.equals(format, DateTimes.fhhmmpp)) {
-      if (Utils.equals(time.period.name.toUpperCase(), DateTimes._pm)) {
-        return "${time.hour - 12}:${time.minute} ${time.period.name.toUpperCase()}";
+      if (hour > 12) {
+        hour -= 12;
+        hourWithLeadingZero = DateTimes._timeWithLeadingZero(hour);
       }
-      else {
-        return "${time.hour}:${time.minute} ${time.period.name.toUpperCase()}";
+      if (hour == 0) {
+        hour = 12;
+        hourWithLeadingZero = DateTimes._timeWithLeadingZero(hour);
       }
+      return "$hourWithLeadingZero:$minuteWithLeadingZero ${time.period.name.toUpperCase()}";
     } else {
       return "";
     }
   }
 
+  static String _timeWithLeadingZero(int value) {
+    if (value.toString().length < 2) {
+      return "0$value";
+    } else {
+      return value.toString();
+    }
+  }
+
   static String periodTime(
       {required String time, String format = DateTimes.fhhmmpp}) {
-    return DateTimes.timeToString(
-        time: DateTimes.stringToTime(time: time), format: format);
+    if (Utils.isNullOrEmpty(time)) {
+      return "";
+    } else {
+      return DateTimes.timeToString(
+          time: DateTimes.stringToTime(time: time), format: format);
+    }
   }
 }

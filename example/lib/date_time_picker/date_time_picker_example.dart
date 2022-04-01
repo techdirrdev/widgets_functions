@@ -4,14 +4,14 @@ import 'package:widgets_functions/date_time/date_times.dart';
 import 'package:widgets_functions/responsive/responsive_widget.dart';
 import 'package:widgets_functions/text_field/wf_text_field.dart';
 
-class DatePickerExample extends StatefulWidget {
-  const DatePickerExample({Key? key}) : super(key: key);
+class DateTimePickerExample extends StatefulWidget {
+  const DateTimePickerExample({Key? key}) : super(key: key);
 
   @override
-  State<DatePickerExample> createState() => _DatePickerExampleState();
+  State<DateTimePickerExample> createState() => _DateTimePickerExampleState();
 }
 
-class _DatePickerExampleState extends State<DatePickerExample> {
+class _DateTimePickerExampleState extends State<DateTimePickerExample> {
   String _selectedDate = DateTimes.getCurrentDateTime();
   String _selectedTime = DateTimes.getCurrentTime();
   final TextEditingController _conDate = TextEditingController();
@@ -20,15 +20,15 @@ class _DatePickerExampleState extends State<DatePickerExample> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
-        mobileBody: _mbDatePickerExample(context),
-        tabletBody: _mbDatePickerExample(context),
-        desktopBody: _mbDatePickerExample(context));
+        mobileBody: _mbDateTimePickerExample(context),
+        tabletBody: _mbDateTimePickerExample(context),
+        desktopBody: _mbDateTimePickerExample(context));
   }
 
-  _mbDatePickerExample(BuildContext context) {
+  _mbDateTimePickerExample(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Date Picker Example"),
+        title: const Text("Date & Time Picker Example"),
       ),
       body: SafeArea(
           child: SingleChildScrollView(
@@ -54,7 +54,9 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                       });
                 },
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               WFTextField(
                 controller: _conTime
                   ..text = DateTimes.periodTime(time: _selectedTime),
@@ -62,12 +64,15 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                 hintText: "Select Time",
                 readOnly: true,
                 onTap: () {
-                  DateTimes.timePicker(context: context, time: _selectedTime, dateTime: (time) {
-                    log(time);
-                    setState(() {
-                      _selectedTime = time;
-                    });
-                  });
+                  DateTimes.timePicker(
+                      context: context,
+                      time: _selectedTime,
+                      dateTime: (time) {
+                        log(time);
+                        setState(() {
+                          _selectedTime = time;
+                        });
+                      });
                 },
               )
             ],
