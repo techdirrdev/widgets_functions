@@ -29,8 +29,11 @@ class _DropdownExampleState extends State<DropdownExample> {
       list.add(WFDropdownItem(
           id: "$i",
           value: "Item $i",
-          data: User(userId: "$i", userName: "User $i") /* User class is another data class (use any datatype in data field )*/
-      ));
+          data: User(
+              userId: "$i",
+              userName:
+                  "User $i") /* User class is another data class (use any datatype in data field )*/
+          ));
     }
     setState(() {
       _itemList = list;
