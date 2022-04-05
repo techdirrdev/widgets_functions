@@ -1,3 +1,7 @@
+## 1.2.4
+
+* Fixed issues
+
 ## 1.2.3
 
 * timePicker - Time picker function (DateTimes.timePicker()), with extra function like period time (DateTimes.periodTime()), string to time (DateTimes.stringToTime()), time to string (DateTimes.timeToString())
