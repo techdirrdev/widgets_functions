@@ -29,7 +29,8 @@ class _DropdownExampleState extends State<DropdownExample> {
       list.add(WFDropdownItem(
           id: "$i",
           value: "Item $i",
-          data: User(userId: "$i", userName: "User $i")));
+          data: User(userId: "$i", userName: "User $i") /* User class is another data class (use any datatype in data field )*/
+      ));
     }
     setState(() {
       _itemList = list;
@@ -67,7 +68,7 @@ class _DropdownExampleState extends State<DropdownExample> {
                     });
                     String itemId = selectedItem.id;
                     String itemName = selectedItem.value;
-                    User user = selectedItem.data;
+                    User user = selectedItem.data as User;
                     log("Item Id: $itemId -- Item Name: $itemName ## Other Details ## User Id: ${user.userId} -- User Name: ${user.userName}");
                   }),
               const SizedBox(
@@ -84,7 +85,7 @@ class _DropdownExampleState extends State<DropdownExample> {
                     for (WFDropdownItem selectedItem in selectedItemList) {
                       String itemId = selectedItem.id;
                       String itemName = selectedItem.value;
-                      User user = selectedItem.data;
+                      User user = selectedItem.data as User;
                       log("Item Id: $itemId -- Item Name: $itemName ## Other Details ## User Id: ${user.userId} -- User Name: ${user.userName}");
                     }
                   })
