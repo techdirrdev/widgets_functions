@@ -111,13 +111,15 @@ class _WFDropdownState extends State<WFDropdown> {
     _initialSetup();
     return TextFormField(
       onTap: () {
-        _openDropdown(
-            context: context,
-            list: widget.list,
-            isMultiple: widget._isMultiple,
-            title: ((widget.title.trim()).isNotEmpty)
-                ? widget.title
-                : widget.labelText);
+        if (widget.enabled) {
+          _openDropdown(
+              context: context,
+              list: widget.list,
+              isMultiple: widget._isMultiple,
+              title: ((widget.title.trim()).isNotEmpty)
+                  ? widget.title
+                  : widget.labelText);
+        }
       },
       controller: _conSelectedValue,
       readOnly: true,
