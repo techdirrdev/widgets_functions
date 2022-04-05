@@ -61,9 +61,9 @@ _generateItems() {
 }
 ```
 
-3. put WFDropdown in your build function
+3. Put WFDropdown in your build function
 
-Single Selection Dropdown
+* Single Selection Dropdown
 ```dart
 WFDropdown.singleSelection(
   title: "Single Selection Dropdown",
@@ -82,7 +82,7 @@ WFDropdown.singleSelection(
 })
 ```
 
-Multi Selection Dropdown
+* Multi Selection Dropdown
 ```dart
 WFDropdown.multiSelection(
   title: "Multi Selection Dropdown",
@@ -112,9 +112,9 @@ final TextEditingController _conDate = TextEditingController();
 final TextEditingController _conTime = TextEditingController();
 ```
 
-2. put DateTimes.datePicker or DateTimes.timePicker in your build function
+2. Put DateTimes.datePicker or DateTimes.timePicker in your build function
 
-Date Picker
+* Date Picker
 ```dart
 WFTextField(
   controller: _conDate
@@ -136,7 +136,7 @@ WFTextField(
 )
 ```
 
-Time Picker
+* Time Picker
 ```dart
 WFTextField(
   controller: _conTime
