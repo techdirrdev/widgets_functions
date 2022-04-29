@@ -1,6 +1,7 @@
 ## 1.2.5
 
 * Transfer dropdown function to [dropdown_pro](https://pub.dev/packages/dropdown_pro)
+* Transfer date time picker function to [date_time_pro](https://pub.dev/packages/date_time_pro)
 
 ## 1.2.4
 
