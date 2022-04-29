@@ -41,15 +41,7 @@ class _DashboardState extends State<Dashboard> {
                     onPressed: () {
                       NavigateWithName.to(context, Routes.datePickerExample);
                     },
-                    child: const Text("Date & Time Picker")),
-                const SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      NavigateWithName.to(context, Routes.dropdownExample);
-                    },
-                    child: const Text("Dropdown")),
+                    child: const Text("Date & Time Picker"))
               ],
             ),
           ),

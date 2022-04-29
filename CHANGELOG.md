@@ -1,3 +1,7 @@
+## 1.2.5
+
+* Transfer dropdown function to [dropdown_pro](https://pub.dev/packages/dropdown_pro)
+
 ## 1.2.4
 
 * Fixed issues

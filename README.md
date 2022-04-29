@@ -25,80 +25,13 @@ For help getting started with Flutter, view the online
 
 ## Example
 
-Please follow this [example](https://github.com/techdirr/widgets_functions/tree/master/example) here.
+Please follow this [example](https://github.com/techdirrdev/widgets_functions/tree/master/example) here.
 
 
 ### Text Field
 
 ```dart
 WFTextField(labelText: "Value", hintText: "Value")
-```
-
-
-### Dropdown - Single Selection and Multi Selection
-
-1. Declare variables
-```dart
-List<WFDropdownItem> _itemList = [];
-String _singleSelectedId = ""; //for single selection dropdown
-final List<String> _mutiSelectedIds = []; //for multi selection dropdown
-```
-
-2. Generate your item list
-```dart
-_generateItems() {
-  List<WFDropdownItem> list = [];
-  for (int i = 1; i <= 20; i++) {
-    list.add(WFDropdownItem(
-        id: "$i",
-        value: "Item $i",
-        data: User(userId: "$i", userName: "User $i") /* User class is another data class (use any datatype in data field )*/
-    ));
-  }
-  setState(() {
-    _itemList = list;
-  });
-}
-```
-
-3. Put WFDropdown in your build function
-
-* Single Selection Dropdown
-```dart
-WFDropdown.singleSelection(
-  title: "Single Selection Dropdown",
-  labelText: "Single",
-  hintText: "Single Selection",
-  list: _itemList,
-  selectedId: _singleSelectedId,
-  onSingleItemListener: (selectedItem) {
-    setState(() {
-      _singleSelectedId = selectedItem.id;
-    });
-    String itemId = selectedItem.id;
-    String itemName = selectedItem.value;
-    User user = selectedItem.data as User;
-    log("Item Id: $itemId -- Item Name: $itemName ## Other Details ## User Id: ${user.userId} -- User Name: ${user.userName}");
-})
-```
-
-* Multi Selection Dropdown
-```dart
-WFDropdown.multiSelection(
-  title: "Multi Selection Dropdown",
-  labelText: "Multi",
-  hintText: "Multi Selection",
-  list: _itemList,
-  selectedIds: _mutiSelectedIds,
-  allSelection: true,
-  onMultipleItemListener: (selectedItemList) {
-    for (WFDropdownItem selectedItem in selectedItemList) {
-      String itemId = selectedItem.id;
-      String itemName = selectedItem.value;
-      User user = selectedItem.data as User;
-      log("Item Id: $itemId -- Item Name: $itemName ## Other Details ## User Id: ${user.userId} -- User Name: ${user.userName}");
-    }
-})
 ```
 
 
