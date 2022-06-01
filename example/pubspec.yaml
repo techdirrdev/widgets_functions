@@ -17,6 +17,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  route_navigator: 1.0.0
 
   widgets_functions:
     # When depending on this package from a real application you should use:

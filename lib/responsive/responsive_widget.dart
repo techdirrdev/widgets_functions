@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+/// [ResponsiveWidget] provide responsive layout
 class ResponsiveWidget extends StatelessWidget {
-  // size ...-600
+  /// size (px) ...-600
   final Widget mobileBody;
-  // size 600-1200
+  /// size (px) 600-1200
   final Widget tabletBody;
-  // size 600-...
+  /// size (px) 600-...
   final Widget desktopBody;
 
   const ResponsiveWidget(

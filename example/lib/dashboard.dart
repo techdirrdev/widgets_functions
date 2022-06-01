@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:widgets_functions/navigator/navigate.dart';
+import 'package:route_navigator/navigate.dart';
 import 'package:widgets_functions/responsive/responsive_widget.dart';
 import 'package:widgets_functions_example/utils/routes/routes.dart';
 

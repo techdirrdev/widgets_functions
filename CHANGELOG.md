@@ -1,3 +1,7 @@
+## 1.3.0
+
+* Transfer Navigator function to [route_navigator](https://pub.dev/packages/route_navigator)
+
 ## 1.2.5
 
 * Transfer dropdown function to [dropdown_pro](https://pub.dev/packages/dropdown_pro)

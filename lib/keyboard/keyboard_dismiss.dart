@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// [KeyboardDismiss] when click outside widgets then dismiss keyboard
 class KeyboardDismiss extends StatelessWidget {
   final Widget child;
   final bool onTapDismiss;

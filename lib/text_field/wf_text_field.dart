@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+/// [WFTextField] easy to customize TextField widget
 class WFTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? labelText;
