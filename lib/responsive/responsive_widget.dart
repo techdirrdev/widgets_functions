@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 class ResponsiveWidget extends StatelessWidget {
   /// size (px) ...-600
   final Widget mobileBody;
+
   /// size (px) 600-1200
   final Widget tabletBody;
+
   /// size (px) 600-...
   final Widget desktopBody;
 
