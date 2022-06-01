@@ -1,3 +1,7 @@
+## 1.4.0
+
+* Fixed issues
+
 ## 1.3.0
 
 * Transfer Navigator function to [route_navigator](https://pub.dev/packages/route_navigator)
