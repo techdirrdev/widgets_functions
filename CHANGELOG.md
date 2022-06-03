@@ -1,3 +1,7 @@
+## 1.4.0
+
+* isNullOREmptyORZero - check string is null or empty
+
 ## 1.3.0
 
 * Transfer Navigator function to [route_navigator](https://pub.dev/packages/route_navigator)
