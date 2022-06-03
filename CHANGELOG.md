@@ -1,3 +1,7 @@
+## 1.5.0
+
+* isNullOREmptyORZero - check string is null or empty
+
 ## 1.4.0
 
 * isNullOREmptyORZero - check string is null or empty
