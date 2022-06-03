@@ -2,8 +2,13 @@ class Utils {
   Utils._();
 
   /// check string is null or empty
-  static bool isNullOrEmpty(String? str) {
+  static bool isNullOREmpty(String? str) {
     return (str == null || str.trim().isEmpty);
+  }
+
+  /// check string is null or empty or zero
+  static bool isNullOREmptyORZero(String? str) {
+    return (str == null || str.trim().isEmpty || str == "0");
   }
 
   /// check strings are equals or not

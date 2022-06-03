@@ -1,6 +1,6 @@
 ## 1.4.0
 
-* Fixed issues
+* isNullOREmptyORZero - check string is null or empty
 
 ## 1.3.0
 
