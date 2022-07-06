@@ -1,6 +1,6 @@
 ## 1.6.0
 
-* isNullOREmptyORZero - check string is null or empty
+* Progress dialog
 
 ## 1.5.0
 
