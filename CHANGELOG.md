@@ -1,3 +1,7 @@
+## 1.7.0
+
+* Progress dialog
+
 ## 1.6.0
 
 * Progress dialog
