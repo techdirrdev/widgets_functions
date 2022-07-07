@@ -36,3 +36,11 @@ Please follow this [example](https://github.com/techdirrdev/widgets_functions/tr
 ```dart
 WFTextField(labelText: "Value", hintText: "Value")
 ```
+
+### Progress Dialog
+
+```dart
+ProgressDialog _dialog = ProgressDialog(context);
+_dialog.show();
+_dialog.dismiss();
+```

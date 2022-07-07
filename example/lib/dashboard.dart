@@ -14,15 +14,15 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  ProgressDialog? _dialog;
+  late ProgressDialog _dialog;
 
   @override
   void initState() {
     super.initState();
     _dialog = ProgressDialog(context);
-    _dialog?.show();
-    Timer(const Duration(seconds: 2), () {
-      _dialog?.dismiss();
+    _dialog.show();
+    Timer(const Duration(seconds: 5), () {
+      _dialog.dismiss();
     });
   }
 

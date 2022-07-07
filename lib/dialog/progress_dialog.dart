@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 abstract class _ProgressDialog {
@@ -14,6 +15,7 @@ abstract class _ProgressDialog {
 class ProgressDialog implements _ProgressDialog {
   ///The context
   final BuildContext context;
+  BuildContext? pdContext;
 
   ///The (optional) default progress widget that are displayed before message of the dialog,
   ///it will replaced when you use setChild, and it will restored if you `setChild(null)`.
@@ -24,14 +26,16 @@ class ProgressDialog implements _ProgressDialog {
 
   bool _show = false;
 
+  ///dialog showed or not
   bool get isShowed => _show;
 
-  ProgressDialog(this.context, {this.child, this.dismissible = true});
+  ProgressDialog(this.context, {this.child, this.dismissible = false});
 
   ///Show progress dialog
   void show() async {
     if (!_show) {
       _show = true;
+      _WFProgressDialogWidgetState._show = _show;
       _showDialog();
     }
   }
@@ -40,6 +44,7 @@ class ProgressDialog implements _ProgressDialog {
   void dismiss() {
     if (_show) {
       _show = false;
+      _WFProgressDialogWidgetState._show = _show;
       Navigator.pop(context);
     }
   }
@@ -48,22 +53,12 @@ class ProgressDialog implements _ProgressDialog {
     Timer(const Duration(), () {
       showDialog(
           context: context,
-          barrierDismissible: dismissible,
-          builder: (ctx) {
-            return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5)),
-              elevation: 5,
-              backgroundColor: Colors.white,
-              child: child ??
-                  const Padding(
-                      padding: EdgeInsets.only(
-                          top: 15, bottom: 15, left: 120, right: 120),
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                      )),
-            );
-          });
+          builder: (context) => WFProgressDialogWidget(
+              dismissible: dismissible,
+              child: child,
+              onDismiss: (show) {
+                _show = show;
+              }));
     });
   }
 
@@ -75,5 +70,57 @@ class ProgressDialog implements _ProgressDialog {
   @override
   void setDismissible(bool dismissible) {
     this.dismissible = dismissible;
+  }
+}
+
+class WFProgressDialogWidget extends StatefulWidget {
+  final bool dismissible;
+  final Widget? child;
+  final Function(bool show) onDismiss;
+
+  const WFProgressDialogWidget(
+      {Key? key,
+      required this.dismissible,
+      required this.child,
+      required this.onDismiss})
+      : super(key: key);
+
+  @override
+  State<WFProgressDialogWidget> createState() => _WFProgressDialogWidgetState();
+}
+
+class _WFProgressDialogWidgetState extends State<WFProgressDialogWidget> {
+  static bool _show = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+        onWillPop: () async {
+          return _dismiss();
+        },
+        child: (widget.child == null)
+            ? const Center(
+                child: Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                    ),
+                  ),
+                ),
+              )
+            : Dialog(child: widget.child));
+  }
+
+  _dismiss() {
+    if (!widget.dismissible) {
+      return false;
+    }
+    if (_show) {
+      _show = false;
+      widget.onDismiss(_show);
+      Navigator.pop(context);
+      return true;
+    }
   }
 }
