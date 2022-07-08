@@ -1,6 +1,6 @@
 ## 1.8.0
 
-* Progress dialog
+* ResponsiveWidget -> ResponsiveLayout
 
 ## 1.7.0
 

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:route_navigator/navigate.dart';
 import 'package:widgets_functions/dialog/progress_dialog.dart';
-import 'package:widgets_functions/responsive/responsive_widget.dart';
+import 'package:widgets_functions/responsive/responsive_layout.dart';
 import 'package:widgets_functions_example/utils/routes/routes.dart';
 
 class Dashboard extends StatefulWidget {
@@ -28,30 +28,78 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveWidget(
+    return ResponsiveLayout(
         mobileBody: _mbDashboard(context),
-        tabletBody: _mbDashboard(context),
-        desktopBody: _mbDashboard(context));
+        tabletBody: _tbDashboard(context),
+        desktopBody: _dbDashboard(context));
   }
 
   _mbDashboard(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.black12,
         appBar: AppBar(title: const Text('widgets_functions')),
         body: SafeArea(
             child: Padding(
           padding: const EdgeInsets.all(20),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      NavigateWithName.to(context, Routes.textFieldExample);
-                    },
-                    child: const Text("TextField"))
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text("Responsive Mobile Body"),
+              const SizedBox(height: 20),
+              _widgets(context)
+            ],
           ),
         )));
+  }
+
+  _tbDashboard(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.black26,
+        appBar: AppBar(title: const Text('widgets_functions')),
+        body: SafeArea(
+            child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text("Responsive Tablet Body"),
+              const SizedBox(height: 20),
+              _widgets(context)
+            ],
+          ),
+        )));
+  }
+
+  _dbDashboard(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.black38,
+        appBar: AppBar(title: const Text('widgets_functions')),
+        body: SafeArea(
+            child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text("Responsive Desktop Body"),
+              const SizedBox(height: 20),
+              _widgets(context)
+            ],
+          ),
+        )));
+  }
+
+  _widgets(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ElevatedButton(
+              onPressed: () {
+                NavigateWithName.to(context, Routes.textFieldExample);
+              },
+              child: const Text("TextField"))
+        ],
+      ),
+    );
   }
 }

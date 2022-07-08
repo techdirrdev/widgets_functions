@@ -30,12 +30,23 @@ For help getting started with Flutter, view the online
 
 Please follow this [example](https://github.com/techdirrdev/widgets_functions/tree/master/example) here.
 
+### Responsive Layout
+
+```dart
+ResponsiveLayout(
+  mobileBody: Widget,
+  tabletBody: Widget,
+  desktopBody: Widget
+);
+```
+
 
 ### Text Field
 
 ```dart
 WFTextField(labelText: "Value", hintText: "Value")
 ```
+
 
 ### Progress Dialog
 
