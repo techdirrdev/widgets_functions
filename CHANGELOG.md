@@ -1,3 +1,7 @@
+## 1.9.0
+
+* ResponsiveWidget -> ResponsiveLayout
+
 ## 1.8.0
 
 * ResponsiveWidget -> ResponsiveLayout
